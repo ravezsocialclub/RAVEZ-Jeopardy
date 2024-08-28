@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAVEZ Jeopardy- Round 2</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="raven-white.png" type="image/png"> <!-- Favicon link -->
+    <audio id="question-audio" src="song.mp3"></audio>
+
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="game-logo">
+    </div>
+    <div class="jeopardy-board">
+        <div class="category-row">
+            <div class="category">Movies</div>
+            <div class="category">Science</div>
+            <div class="category">Sports</div>
+            <div class="category">Technology</div>
+            <div class="category">World Capitals</div>
+        </div>
+        
+        <div class="board-grid">
+            <!-- Rows for 1 -->
+            
+            <div class="square" data-question="Which film won the Oscar for Best Picture in 2020?" data-answer="Parasite">$100</div>
+            <div class="square" data-question="What is the chemical symbol for water?" data-answer="H2O">$100</div>
+            <div class="square" data-question="In what sport would you perform a slam dunk?" data-answer="Basketball">$100</div>
+            <div class="square" data-question="Which company is known for making the iPhone?" data-answer="Apple">$100</div>
+            <div class="square" data-question="What is the capital of France?" data-answer="Paris">$100</div>
+
+            <!-- Row 2 -->
+            
+            <div class="square" data-question="What year was the first Harry Potter movie released?" data-answer="2001">$200</div>
+            <div class="square" data-question="What planet is known as the Red Planet?" data-answer="Mars">$200</div>
+            <div class="square" data-question="Which country has won the most FIFA World Cups?" data-answer="Brazil">$200</div>
+            <div class="square" data-question="Who is the founder of Microsoft?" data-answer="Bill Gates">$200</div>
+            <div class="square" data-question="What is the capital of Japan?" data-answer="Tokyo">$200</div>
+            
+
+            <!-- Row 3 -->
+            <div class="square" data-question="Which 1997 motion picture features the character Jack Dawson?" data-answer="Titanic">$300</div>
+            <div class="square" data-question="What is the powerhouse of the cell?" data-answer="Mitochondria">$300</div>
+            <div class="square" data-question="What sport is known as America's pastime?" data-answer="Baseball">$300</div>
+            <div class="square" data-question="What does CPU stand for?" data-answer="Central Processing Unit">$300</div>
+            <div class="square" data-question="What is the capital of Canada?" data-answer="Ottawa">$300</div>
+
+            <!-- Row 4 -->
+            <div class="square" data-question="Who directed the movie Inception?" data-answer="Christopher Nolan">$400</div>
+            <div class="square" data-question="Who is known as the father of modern physics?" data-answer="Albert Einstein">$400</div>
+            <div class="square" data-question="Who holds the record for the most Grand Slam titles in tennis?" data-answer="Serena Williams">$400</div>
+            <div class="square" data-question="What does HTTP stand for in website addresses?" data-answer="HyperText Transfer Protocol">$400</div>
+            <div class="square" data-question="What is the capital of Brazil?" data-answer="Brasília">$400</div>
+            
+
+            <!-- Row 5 -->
+            <div class="square" data-question="What is the highest-grossing movie of all time?" data-answer="Avatar">$500</div>
+            <div class="square" data-question= "What is the hardest natural substance on Earth?" data-answer="Diamond">$500</div>
+            <div class="square" data-question="What is the only sport to have been played on the moon?" data-answer="Golf">$500</div>
+            <div class="square" data-question="What programming language is known as the language of the web?" data-answer="JavaScript">$500</div>
+            <div class="square" data-question="What is the capital of South Africa?" data-answer="Cape Town or Bloemfontein">$500</div>
+        </div>
+    </div>
+
+    <div id="question-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="question-text"></p>
+            <button id="show-answer-button">Show Answer</button>
+            <p id="answer-text" style="display:none;"></p>
+        </div>
+    </div>
+
+
+    <body>
+        <div class="score-container">
+            <!-- Team 1 -->
+            <div class="team-score" id="team1-score">
+                <h2>Team 1</h2>
+                <div class="score-display" id="score1">0</div>
+                <input type="number" id="score1-input" placeholder="Enter points">
+                <button id="update-score1">Update Score</button>
+            </div>
+        
+            <!-- Team 2 -->
+            <div class="team-score" id="team2-score">
+                <h2>Team 2</h2>
+                <div class="score-display" id="score2">0</div>
+                <input type="number" id="score2-input" placeholder="Enter points">
+                <button id="update-score2">Update Score</button>
+            </div>
+        
+            <!-- Team 3 -->
+            <div class="team-score" id="team3-score">
+                <h2>Team 3</h2>
+                <div class="score-display" id="score3">0</div>
+                <input type="number" id="score3-input" placeholder="Enter points">
+                <button id="update-score3">Update Score</button>
+            </div>
+        
+            <!-- Team 4 -->
+            <div class="team-score" id="team4-score">
+                <h2>Team 4</h2>
+                <div class="score-display" id="score4">0</div>
+                <input type="number" id="score4-input" placeholder="Enter points">
+                <button id="update-score4">Update Score</button>
+            </div>
+        </div>
+         <!-- Round 2 Button -->
+    <div class="round-button-container">
+        <a href="index.html" class="round-button">Round 1</a>
+    </div>
+
+        <script>
+            // Function to update scores
+            function updateScore(team) {
+                const scoreDisplay = document.getElementById('score' + team);
+                const scoreInput = document.getElementById('score' + team + '-input');
+                const currentScore = parseInt(scoreDisplay.textContent);
+                const inputScore = parseInt(scoreInput.value);
+    
+                if (!isNaN(inputScore)) {
+                    const newScore = currentScore + inputScore;
+                    scoreDisplay.textContent = newScore;
+                    scoreInput.value = ''; // Clear the input after updating the score
+                }
+            }
+    
+            // Event listeners for both teams
+            document.getElementById('update-score1').addEventListener('click', function() {
+                updateScore(1);
+            });
+    
+            document.getElementById('update-score2').addEventListener('click', function() {
+                updateScore(2);
+            });
+
+            document.getElementById('update-score3').addEventListener('click', function() {
+                updateScore(3);
+            });
+            document.getElementById('update-score4').addEventListener('click', function() {
+                updateScore(4);
+            });
+        </script>
+    </body>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

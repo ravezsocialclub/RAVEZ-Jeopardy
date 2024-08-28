@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> RAVEZ Jeopardy</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="raven-white.png" type="image/png"> <!-- Favicon link -->
+    <audio id="question-audio" src="song.mp3"></audio>
+
+</head>
+<body>
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="game-logo">
+    </div>
+
+    <div class="jeopardy-board">
+        <div class="category-row">
+            <div class="category">Literature</div>
+            <div class="category">Pop Culture</div>
+            <div class="category">Geography</div>
+            <div class="category">History</div>
+            <div class="category">Music</div>
+        </div>
+        
+        <div class="board-grid">
+            <!-- Rows for 1 -->
+            
+            <div class="square" data-question="Which Shakespeare drama features two inseparable Lovers?" data-answer="Romeo and Juliet">$100</div>
+            <div class="square" data-question="Which blockbuster movie franchise features a group of Marvel superheroes?" data-answer="Marvel's The Avengers">$100</div>
+            <div class="square" data-question="What is the capital of France?" data-answer="Paris">$100</div>
+            <div class="square" data-question="Which war was fought between the North and South regions in the United States?" data-answer="The Civil War">$100</div>
+            <div class="square" data-question="Which British band is known for the song 'Hey Jude'?" data-answer="The Beatles">$100</div>
+
+            <!-- Row 2 -->
+            <div class="square" data-question="What is the name of the wizarding school in the Harry Potter series?" data-answer="Hogwarts">$200</div>
+            <div class="square" data-question="What TV show features the characters Sheldon, Leonard, and Penny?" data-answer="The Big Bang Theory">$200</div>
+            <div class="square" data-question="Which country is the largest by land area?" data-answer="Russia">$200</div>
+            <div class="square" data-question="Who was the fourth President of the United States?" data-answer="James Madison">$200</div>
+            <div class="square" data-question="Who is known as the 'King of Pop'?" data-answer="Michael Jackson">$200</div>
+            
+
+            <!-- Row 3 -->
+            <div class="square" data-question="Who wrote '1984' and 'Animal Farm'?" data-answer="George Orwell">$300</div>
+            <div class="square" data-question="Who hosted the Oscars in 2020?" data-answer="There was no official host">$300</div>
+            <div class="square" data-question="What river is the longest in the world?" data-answer="The Nile River">$300</div>
+            <div class="square" data-question="What was the name of the first successful English colony in America?" data-answer="Jamestown">$300</div>
+            
+            <div class="square" data-question="What is the name of Taylor Swift's 2020 album?" data-answer="Folklore">$300</div>
+
+            <!-- Row 4 -->
+            <div class="square" data-question="Who wrote 'To Kill a Mockingbird'?" data-answer="Harper Lee">$400</div>
+            <div class="square" data-question="Which video game series features the character Master Chief?" data-answer="Halo">$400</div>
+            <div class="square" data-question="Which US state is known as the 'Sunshine State'?" data-answer="Florida">$400</div>
+            <div class="square" data-question="This duo of explorers were sent out west in the United States by Thomas Jefferson to explore the the newly bought land from the Louisiana Purchase." data-answer="Lewis and Clark">$400</div>
+            <div class="square" data-question="Which composer wrote the music for the ballet 'The Nutcracker'?" data-answer="Pyotr Ilyich Tchaikovsky">$400</div>
+            
+
+            <!-- Row 5 -->
+            <div class="square" data-question="What is the title of the first book in the 'Lord of the Rings' trilogy?" data-answer="The Fellowship of the Ring">$500</div>
+            <div class="square" data-question= "What popular TV show, known for its blend of science fiction and horror, takes place in the fictional town of Hawkins, Indiana?" data-answer="Stranger Things">$500</div>
+            <div class="square" data-question="What is the smallest country in the world by land area?" data-answer="Vatican City">$500</div>
+            <div class="square" data-question="In which year did the Titanic sink?" data-answer="1912">$200</div>
+            <div class="square" data-question="Which band released the album 'Dark Side of the Moon'?" data-answer="Pink Floyd">$500</div>
+        </div>
+    </div>
+
+    <div id="question-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="question-text"></p>
+            <button id="show-answer-button">Show Answer</button>
+            <p id="answer-text" style="display:none;"></p>
+        </div>
+    </div>
+
+
+    <body>
+        <div class="score-container">
+            <!-- Team 1 -->
+            <div class="team-score" id="team1-score">
+                <h2>Team 1</h2>
+                <div class="score-display" id="score1">0</div>
+                <input type="number" id="score1-input" placeholder="Enter points">
+                <button id="update-score1">Update Score</button>
+            </div>
+        
+            <!-- Team 2 -->
+            <div class="team-score" id="team2-score">
+                <h2>Team 2</h2>
+                <div class="score-display" id="score2">0</div>
+                <input type="number" id="score2-input" placeholder="Enter points">
+                <button id="update-score2">Update Score</button>
+            </div>
+        
+            <!-- Team 3 -->
+            <div class="team-score" id="team3-score">
+                <h2>Team 3</h2>
+                <div class="score-display" id="score3">0</div>
+                <input type="number" id="score3-input" placeholder="Enter points">
+                <button id="update-score3">Update Score</button>
+            </div>
+        
+            <!-- Team 4 -->
+            <div class="team-score" id="team4-score">
+                <h2>Team 4</h2>
+                <div class="score-display" id="score4">0</div>
+                <input type="number" id="score4-input" placeholder="Enter points">
+                <button id="update-score4">Update Score</button>
+            </div>
+        </div>
+         <!-- Round 2 Button -->
+    <div class="round-button-container">
+        <a href="game2.html" class="round-button">Round 2</a>
+    </div>
+
+        <script>
+            // Function to update scores
+            function updateScore(team) {
+                const scoreDisplay = document.getElementById('score' + team);
+                const scoreInput = document.getElementById('score' + team + '-input');
+                const currentScore = parseInt(scoreDisplay.textContent);
+                const inputScore = parseInt(scoreInput.value);
+    
+                if (!isNaN(inputScore)) {
+                    const newScore = currentScore + inputScore;
+                    scoreDisplay.textContent = newScore;
+                    scoreInput.value = ''; // Clear the input after updating the score
+                }
+            }
+    
+            // Event listeners for both teams
+            document.getElementById('update-score1').addEventListener('click', function() {
+                updateScore(1);
+            });
+    
+            document.getElementById('update-score2').addEventListener('click', function() {
+                updateScore(2);
+            });
+
+            document.getElementById('update-score3').addEventListener('click', function() {
+                updateScore(3);
+            });
+            document.getElementById('update-score4').addEventListener('click', function() {
+                updateScore(4);
+            });
+        </script>
+    </body>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
